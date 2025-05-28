@@ -1,12 +1,34 @@
 require "digest/sha2"
 
 class Shortener
-  attr_reader :url
-  def initialize(url)
+  attr_reader :url, :link_repo
+
+  def initialize(url, link_repo = Repositories::LinkRepo.new)
     @url = url
+    @link_repo = link_repo
+  end
+
+  def generate_short_link
+    attrs = Links::Changesets::Create.map({
+      original_url: url,
+      lookup_code:
+    })
+
+    link_repo.create(attrs:)
   end
 
   def lookup_code
-    Digest::SHA256.hexdigest(url)[0..6]
+    i = 0
+    loop do
+      code = get_fresh_code(i)
+      break code unless link_repo.lookup_code_exists?(lookup_code: code)
+      i = i + 1
+    end
+  end
+
+  private
+
+  def get_fresh_code(i)
+    Digest::SHA256.hexdigest(url)[i..(i+6)]
   end
 end
