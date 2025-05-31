@@ -11,5 +11,6 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
-  post "/links" => "links#create"
+  root "home#index"
+  post "/links", to: "links#create", defaults: { format: :json }
 end
