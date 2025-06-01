@@ -4,8 +4,7 @@ RSpec.describe LinksController, type: :controller do
   let(:url) { "https://www.testurl.com" }
 
   it "can shorten a link provided by a user" do
-    request.env["HTTP_ACCEPT"] = "text/javascript"
-    post :create, params: { link: { original_url: url } }
+    post :create, params: { format: 'json', link: { original_url: url } }
 
     link = assigns(:link)
 

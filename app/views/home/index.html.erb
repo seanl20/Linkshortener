@@ -1,7 +1,9 @@
 <h1>Home#index</h1>
 <p>Find me in app/views/home/index.html.erb</p>
 
-<%= form_with model:@link, html: { "data-type": "json" } do |form| %>
-  <%= form.text_field :original_url %>
-  <%= form.submit %>
-<% end %>
+<div data-controller="link-shortener">
+  <%= form_with model:@link, id: "linkShorterForm", data: { type: :json }  do |form| %>
+    <%= form.text_field :original_url %>
+    <%= form.submit %>
+  <% end %>
+</div>
