@@ -1,6 +1,9 @@
 source "https://rubygems.org"
 
 gem "bootsnap", require: false # Reduces boot times through caching; required in config/boot.rb
+gem "dry-monads"
+gem "dry-rails", github: "dry-rb/dry-rails"
+gem "dry-struct"
 gem "importmap-rails" # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
 gem "jbuilder" # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "kamal", require: false # Deploy this application anywhere as a Docker container [https://kamal-deploy.org]

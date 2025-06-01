@@ -9,12 +9,7 @@ class Shortener
   end
 
   def generate_short_link
-    attrs = Links::Changesets::Create.map({
-      original_url: url,
-      lookup_code:
-    })
-
-    link_repo.create(attrs:)
+    Links::Commands::Create.new.call(original_url: url, lookup_code: lookup_code)
   end
 
   def lookup_code
