@@ -2,9 +2,10 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="link-shortener"
 export default class extends Controller {
+  static targets = ['lookupCode'];
+  
   connect() {
     const form = document.getElementById("linkShorterForm");
-    console.log('form: ', form);
 
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
@@ -21,7 +22,10 @@ export default class extends Controller {
       const data = await response.json();
 
       if (response.ok) {
+        // console.log('data: ', data.lookup_code);
+        this.lookupCodeTarget.textContent = data.shortened_url
         alert("successfully created Link shortener");
+        form.reset();
       } else {
         alert(data.error || "Submission failed");
       }
