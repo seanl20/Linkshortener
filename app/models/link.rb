@@ -7,4 +7,8 @@ class Link < ApplicationRecord
     uri = URI.parse(original_url || "")
     errors.add(:original_url, "Invalid URL format") if uri.host.nil?
   end
+
+  def shortened_url
+    "https://localhost:3000/#{lookup_code}"
+  end
 end
