@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="link-shortener"
 export default class extends Controller {
-  static targets = ['lookupCode'];
+  static targets = ['lookupCode', 'lookupCodeDiv'];
   
   connect() {
     const form = document.getElementById("linkShorterForm");
@@ -23,7 +23,8 @@ export default class extends Controller {
 
       if (response.ok) {
         // console.log('data: ', data.lookup_code);
-        this.lookupCodeTarget.textContent = data.shortened_url
+        this.lookupCodeTarget.textContent = data.shortened_url;
+        this.lookupCodeDivTarget.classList.remove('visually-hidden');
         alert("successfully created Link shortener");
         form.reset();
       } else {
