@@ -89,4 +89,24 @@ RSpec.describe Repositories::LinkRepo do
       end
     end
   end
+
+  describe "#get_by_lookup_code" do
+    subject(:get_by_lookup_code) { described_class.new.get_by_lookup_code(lookup_code:) }
+
+    context "lookup code exists" do
+      let!(:link) { FactoryBot.create(:link, original_url: "https://www.testurl.com", lookup_code: "1234567") }
+      let(:lookup_code) { "1234567" }
+
+      it "returns link" do
+        expect(get_by_lookup_code).to eq(link)
+      end
+    end
+
+    context "lookup code doesn't exists" do
+      let(:lookup_code) { "1234567" }
+      it "return empty" do
+        expect(get_by_lookup_code).to eq(nil)
+      end
+    end
+  end
 end

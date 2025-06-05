@@ -13,4 +13,5 @@ Rails.application.routes.draw do
   # root "posts#index"
   root "home#index"
   post "/links", to: "links#create", defaults: { format: :json }
+  get "/:lookup_code", to: "links#show"
 end

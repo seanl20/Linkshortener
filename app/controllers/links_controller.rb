@@ -12,6 +12,10 @@ class LinksController < ApplicationController
     end
   end
 
+  def show
+    puts "TEST"
+  end
+
   private
 
   def link_params
