@@ -13,7 +13,8 @@ class LinksController < ApplicationController
   end
 
   def show
-    puts "TEST"
+    link = Links::Queries::GetByLookupCode.new.call(lookup_code: params[:lookup_code])
+    redirect_to link.original_url, allow_other_host: true
   end
 
   private
